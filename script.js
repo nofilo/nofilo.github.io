@@ -5,6 +5,9 @@ let answeredQuestions = []; // 全局数组用于记录已经回答过的题目
 function startGame() {
   document.getElementById("start-button-container").style.display = "none";
   document.getElementById("container").style.display = "flex";
+  document.querySelectorAll('.gallery-item').forEach(function(item) {
+    item.style.display = 'block';
+  });
 }
 
 function funMusic(musicFile) {
@@ -102,7 +105,7 @@ function checkAnswer() {
       document.querySelector("button:nth-of-type(2)").style.display = "block";
       document.querySelector("button:nth-of-type(3)").style.display = "block";
     } else {
-      document.getElementById("result-message").innerText = `不好意思，您的答案错误。正确答案是"${correctAnswer}"。您的奖金清零。`;
+      document.getElementById("result-message").innerText = `不好意思，您的答案错误。正确答案是"${currentName}"。您的奖金清零。`;
       document.getElementById("result-message").style.display = "block";
       document.querySelector("button:nth-of-type(1)").style.display = "none";
       document.querySelector("button:nth-of-type(2)").style.display = "block";
@@ -115,8 +118,6 @@ function checkAnswer() {
 
 
 function leave() {
-  // console.log(accumulate);
-  // console.log(currentMusic);
   if (currentMusic !== null) {
     currentMusic.pause();
     currentMusic = null;
@@ -129,11 +130,16 @@ function leave() {
 }
 
 function claimPrize() {
+  if(accumulate==null){
+    accumulate=0;}
   alert(`您现在累计获奖金额是${accumulate}元`)
 }
 
 function showCongratulations() {
   document.getElementById("container").style.display = "none";
+  document.querySelectorAll('.gallery-item').forEach(function(item) {
+    item.style.display = 'none';
+  });
   document.getElementById("Congratulations-page").style.display = "flex";
   const prizeAmountElement = document.getElementById('prize-amount');
   if(accumulate===null){
@@ -143,6 +149,11 @@ function showCongratulations() {
 }
 
 function reset(){
+  currentMusic = null;//可以重新声明
+  accumulate = null; 
+  answeredQuestions = [];
   document.getElementById("Congratulations-page").style.display = "none";
   document.getElementById("start-button-container").style.display = "flex";
+  document.getElementById("start-button").style.display="block";
+  console.log(document.getElementById("start-button-container"));
 }

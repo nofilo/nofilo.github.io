@@ -99,13 +99,15 @@ function checkAnswer() {
     }
 
     if (answer === currentName) {
-      document.getElementById("result-message").innerText = `祝贺你！回答正确，赢得了${score}块钱！`;
+      // document.getElementById("result-message").innerText = `祝贺你！回答正确，赢得了${score}块钱！`;
+      alert(`祝贺你！回答正确，赢得了${score}块钱！`);
       document.getElementById("result-message").style.display = "block";
       document.querySelector("button:nth-of-type(1)").style.display = "none";
       document.querySelector("button:nth-of-type(2)").style.display = "block";
       document.querySelector("button:nth-of-type(3)").style.display = "block";
     } else {
-      document.getElementById("result-message").innerText = `不好意思，您的答案错误。正确答案是"${currentName}"。您的奖金清零。`;
+      // document.getElementById("result-message").innerText = `不好意思，您的答案错误。正确答案是"${currentName}"。您的奖金清零。`;
+      alert(`不好意思，您的答案错误。正确答案是"${currentName}"。您的奖金清零。`);
       document.getElementById("result-message").style.display = "block";
       document.querySelector("button:nth-of-type(1)").style.display = "none";
       document.querySelector("button:nth-of-type(2)").style.display = "block";
@@ -132,7 +134,9 @@ function leave() {
 function claimPrize() {
   if(accumulate==null){
     accumulate=0;}
-  alert(`您现在累计获奖金额是${accumulate}元`)
+  alert(`您现在累计获奖金额是${accumulate}元`);
+  if(accumulate==0){
+    accumulate=null;}
 }
 
 function showCongratulations() {

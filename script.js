@@ -72,7 +72,7 @@ function checkAnswer() {
   var correctAnswer = doorAnswers[currentImageSrc];
   var musicPath = doorMusicPaths[currentImageSrc];
   console.log(currentImageSrc);
-  // console.log(musicPath)
+  console.log(musicPath)
 
   if(accumulate===0){
     alert('您已失去答题机会。')

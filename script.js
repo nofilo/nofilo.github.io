@@ -56,16 +56,16 @@ function showImage(element) {
 
 function checkAnswer() {
   const doorAnswers = {
-    'http://127.0.0.1:5500/image/door1.jpg': '夜海的秘密',
-    'http://127.0.0.1:5500/image/door2.jpg': '舞厅',
-    'http://127.0.0.1:5500/image/door3.jpg': '还愿',
-    'http://127.0.0.1:5500/image/door4.jpg': '清醒记'
+    'https://nofilo.github.io/image/door1.jpg': '夜海的秘密',
+    'https://nofilo.github.io/image/door2.jpg': '舞厅',
+    'https://nofilo.github.io/image/door3.jpg': '还愿',
+    'https://nofilo.github.io/image/door4.jpg': '清醒记'
   };
   const doorMusicPaths={
-    'http://127.0.0.1:5500/image/door1.jpg': './music/夜海的秘密（阉割版）.MP3',
-    'http://127.0.0.1:5500/image/door2.jpg': './music/ダンスホール.mp3',
-    'http://127.0.0.1:5500/image/door3.jpg': './music/还愿（阉割版）.MP3',
-    'http://127.0.0.1:5500/image/door4.jpg': './music/清醒记（阉割版）.MP3'
+    'https://nofilo.github.io/image/door1.jpg': './music/夜海的秘密（阉割版）.MP3',
+    'https://nofilo.github.io/image/door2.jpg': './music/ダンスホール.mp3',
+    'https://nofilo.github.io/image/door3.jpg': './music/还愿（阉割版）.MP3',
+    'https://nofilo.github.io/image/door4.jpg': './music/清醒记（阉割版）.MP3'
   }
   var answer = document.getElementById("answer-input").value.trim();
   var currentImageSrc = document.getElementById("expanded-image").src;

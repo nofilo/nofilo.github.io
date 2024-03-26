@@ -71,6 +71,7 @@ function checkAnswer() {
   var currentImageSrc = document.getElementById("expanded-image").src;
   var correctAnswer = doorAnswers[currentImageSrc];
   var musicPath = doorMusicPaths[currentImageSrc];
+  console.log(currentImageSrc);
   // console.log(musicPath)
 
   if(accumulate===0){

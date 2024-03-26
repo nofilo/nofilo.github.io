@@ -1,67 +1,63 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>My first styled page</title>
-  <style>
-      /* 每个属性用分号隔开。冒号之前是属性，之后是值 */
-/* 1em=元素中文本的1个垂直高度 */
-body {
-  padding-left: 11em;
-  font-family: Georgia, "Times New Roman",
-      Times, serif;
-  color: rgb(192, 84, 192);
-  background-color: #f2f480 }
-ul.navbar {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 2em;
-  left: 1em;
-  width: 9em }
-h1 {
-  font-family: Helvetica, Geneva, Arial,
-      SunSans-Regular, sans-serif }
-ul.navbar li {
-  background: white;
-  margin: 0.5em 0;
-  padding: 0.3em;
-  border-right: 1em solid black }
-ul.navbar a {
-  text-decoration: none }
-a:link {
-  color: blue }
-a:visited {
-  color: purple }
-  address {
-    margin-top: 1em;
-    padding-top: 1em;
-    border-top: thin dotted }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>开门大吉</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="text/javascript" src="./script.js"></script>
 </head>
-
 <body>
+  <div id="start-button-container">
+    <button id="start-button" onclick="startGame()">START</button>
+  </div>
 
-<ul class="navbar">
-  <li><a href="https://leetcode.cn/leetbook/">leetcode</a></li>
-  <li><a href="https://github.com/">github</a></li>
-  <li><a href="https://developer.mozilla.org/zh-CN/">mdn</a></li>
-  <li><a href="https://huggingface.com/emoji/weary-cat">huggingface</a></li>
-</ul>
+  <!-- 四扇门 -->
+  <div id="container" style="display:none;">
+    <div class="image-container">
+    <div class="gallery-item">
+      <a href="#" onclick="funMusic('./music/夜海的秘密（阉割版）.MP3')">
+        <img src="./image/door1.jpg" alt="Image 3" onclick="showImage(this)" >
+      </a>
+    </div>
+    <div class="gallery-item">
+      <a href="#" onclick="funMusic('./music/ダンスホール.mp3')">
+        <img src="./image/door2.jpg" alt="Image 3" onclick="showImage(this)" >
+      </a>
+    </div>
+    <div class="gallery-item">
+      <a href="#" onclick="funMusic('./music/还愿（阉割版）.MP3')">
+        <img src="./image/door3.jpg" alt="Image 3" onclick="showImage(this)" >
+      </a>    </div>
+    <div class="gallery-item">
+      <a href="#" onclick="funMusic('./music/清醒记（阉割版）.MP3')">
+        <img src="./image/door4.jpg" alt="Image 3" onclick="showImage(this)" >
+      </a>
+    </div>
+    </div>
+    <div class="button-container">
+      <button onclick="showCongratulations()">离开</button>
+  </div>
+  </div>
 
-<h1 style="  border-style: solid;  border-width: 7px;  border-color: rgb(243, 241, 114);  padding: 20px;  text-align: center;  background-color: rgb(213, 223, 123);  color: white; ">How to study code</h1>
+  <!-- 选中放大界面 -->
+  <div id="overlay">
+    <img id="expanded-image" src="" alt="Expanded Image">
+    <p id="result-message"></p>
+    <div class="input-container">
+      <input type="text" id="answer-input" placeholder="请输入歌曲名字~">
+    </div>
+    <div class="button-container">
+      <button onclick="checkAnswer()">提交</button>
+      <button onclick="leave()">继续</button>
+      <button onclick="claimPrize()">获奖金额</button>
+    </div>
+  </div>
 
-
-<p>Welcome to the new world</p>
-
-<p>It lacks images, but at least it has style.
-And it has links&hellip;</p>
-
-<p>There should be more here, but I don't know
-what yet.</p>
-
-<address>Made 5 April 2004<br>
-  by myself.</address>
-
+  <div id="Congratulations-page" style="display: none;">
+    <h2>恭喜您!</h2>
+    <p id="prize-message">您获得了<span id="prize-amount"></span>元的奖金!</p>
+    <button class="reset-button" onclick="reset()">再挑战一次!</button>
+  </div>
 </body>
 </html>

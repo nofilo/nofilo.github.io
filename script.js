@@ -45,7 +45,9 @@ currentMusic.play();
 
 function showImage(element) {
   var imageUrl = element.src;
+  var imageAlt = element.alt;
   document.getElementById("expanded-image").src = imageUrl;
+  document.getElementById("expanded-image").alt= imageAlt;
   document.getElementById("overlay").style.display = "block";
   document.querySelectorAll('.gallery-item').forEach(function(item) {
     if (item != element.parentNode) {
@@ -55,36 +57,28 @@ function showImage(element) {
 }
 
 function checkAnswer() {
-  const doorAnswers = {
-    'https://nofilo.github.io/image/door1.jpg': '夜海的秘密',
-    'https://nofilo.github.io/image/door2.jpg': '舞厅',
-    'https://nofilo.github.io/image/door3.jpg': '还愿',
-    'https://nofilo.github.io/image/door4.jpg': '清醒记'
-  };
   const doorMusicPaths={
-    'https://nofilo.github.io/image/door1.jpg': './music/夜海的秘密（阉割版）.MP3',
-    'https://nofilo.github.io/image/door2.jpg': './music/ダンスホール.mp3',
-    'https://nofilo.github.io/image/door3.jpg': './music/还愿（阉割版）.MP3',
-    'https://nofilo.github.io/image/door4.jpg': './music/清醒记（阉割版）.MP3'
+    '夜海的秘密': './music/夜海的秘密（阉割版）.MP3',
+    '舞厅': './music/ダンスホール.mp3',
+    '还愿': './music/还愿（阉割版）.MP3',
+    '清醒记': './music/清醒记（阉割版）.MP3'
   }
   var answer = document.getElementById("answer-input").value.trim();
-  var currentImageSrc = document.getElementById("expanded-image").src;
-  var correctAnswer = doorAnswers[currentImageSrc];
-  var musicPath = doorMusicPaths[currentImageSrc];
-  console.log(currentImageSrc);
-  console.log(musicPath)
+  var currentName = document.getElementById("expanded-image").alt;
+  var musicPath = doorMusicPaths[currentName];
+  // console.log(currentName)
 
   if(accumulate===0){
     alert('您已失去答题机会。')
   }else{
-    if (answeredQuestions.includes(currentImageSrc)) {
+    if (answeredQuestions.includes(currentName)) {
       alert("该题目已经回答过，请尝试回答其他题目。");
       return;
     }
-    answeredQuestions.push(currentImageSrc);
+    answeredQuestions.push(currentName);
     console.log(answeredQuestions);
 
-    if (answer === correctAnswer) {
+    if (answer === currentName) {
       // 根据回答次数更新积分
       if (answeredQuestions.length === 1) {
         score=1000;
@@ -97,11 +91,11 @@ function checkAnswer() {
       }
       accumulate += score;
     }
-    if(answer!==correctAnswer){
+    if(answer!==currentName){
       accumulate=0;
     }
 
-    if (answer === correctAnswer) {
+    if (answer === currentName) {
       document.getElementById("result-message").innerText = `祝贺你！回答正确，赢得了${score}块钱！`;
       document.getElementById("result-message").style.display = "block";
       document.querySelector("button:nth-of-type(1)").style.display = "none";

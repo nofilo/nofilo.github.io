@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>开门大吉</title>
+  <link rel="stylesheet" href="./mystyle.css">
+  <script type="text/javascript" src="./script.js"></script>
+</head>
+<body>
+  <div id="start-button-container">
+    <button id="start-button" onclick="startGame()">START</button>
+  </div>
+
+  <!-- 四扇门 -->
+  <div id="container" style="display:none;">
+    <div class="image-container">
+    <div class="gallery-item">
+      <a href="#" onclick="funMusic('./music/夜海的秘密（阉割版）.MP3')">
+        <img src="./image/door1.jpg" alt="夜海的秘密" onclick="showImage(this)" >
+      </a>
+    </div>
+    <div class="gallery-item">
+      <a href="#" onclick="funMusic('./music/ダンスホール.mp3')">
+        <img src="./image/door2.jpg" alt="舞厅" onclick="showImage(this)" >
+      </a>
+    </div>
+    <div class="gallery-item">
+      <a href="#" onclick="funMusic('./music/还愿（阉割版）.MP3')">
+        <img src="./image/door3.jpg" alt="还愿" onclick="showImage(this)" >
+      </a>    </div>
+    <div class="gallery-item">
+      <a href="#" onclick="funMusic('./music/清醒记（阉割版）.MP3')">
+        <img src="./image/door4.jpg" alt="清醒记" onclick="showImage(this)" >
+      </a>
+    </div>
+    </div>
+    <div class="button-container">
+      <button onclick="showCongratulations()">离开</button>
+  </div>
+  </div>
+
+  <!-- 选中放大界面 -->
+  <div id="overlay">
+    <img id="expanded-image" src="" alt="">
+    <p id="result-message"></p>
+    <div class="input-container">
+      <input type="text" id="answer-input" placeholder="请输入歌曲名字~">
+    </div>
+    <div class="button-container">
+      <button onclick="checkAnswer()">提交</button>
+      <button onclick="leave()">继续</button>
+      <button onclick="claimPrize()">获奖金额</button>
+    </div>
+  </div>
+
+  <div id="Congratulations-page" style="display: none;">
+    <h2>恭喜您!</h2>
+    <p id="prize-message">您获得了<span id="prize-amount"></span>元的奖金!</p>
+    <button class="reset-button" onclick="reset()">再挑战一次!</button>
+  </div>
+</body>
+</html>

@@ -27,7 +27,7 @@ function funMusic(musicFile) {
       filterNode.connect(audioContext.destination); // 连接到音频输出
       source.start(0); // 开始播放
       // 设置音频播放速率为2倍
-      source.playbackRate.value = 2;
+      // source.playbackRate.value = 1;
     })
     .catch(error => console.error('Error loading audio file:', error));
 

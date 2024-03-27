@@ -27,6 +27,12 @@ body, html {
   width: 20%; /* 图片宽度设为屏幕宽度的20% */
   height: auto;
 }
+
+.gallery-item img:hover{
+  transform: scale(1.05); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 阴影 */
+}
+
 .button-container {
   text-align: center; /* 让按钮居中显示 */
   margin-top: 20px;
@@ -106,8 +112,8 @@ body, html {
 }
 
 .button-container button:hover {
-  transform: scale(1.05); /* 按钮悬停时稍微放大 */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 按钮悬停时增加阴影 */
+  transform: scale(1.05); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 阴影 */
 }
 
 #result-message {

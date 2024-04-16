@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作品集</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<style>
+    @font-face {
+        font-family: 'mdmd';
+        src: url('./mdmd_wufengti.v1003.ttf') format('truetype'); 
+      }
+
+      body {  
+        font-family: 'mdmd','MyFont', sans-serif;  
+        font-size: 16px;  
+        filter: drop-shadow(0 0 10px white);
+      }
+
+      .btn-link {
+        font-weight: 400;
+        color: #a7aab3;
+        text-decoration: none;
+      }
+
+      .btn {
+        background:#6b7c8c; 
+        border-color:#6b7c8c;
+        font-size: 3vw;
+        color:white
+      }
+
+      .h1{
+        font-size: 10rem;
+      }
+
+      .title {
+        margin-top: 2vh;
+        text-align: center; 
+      }
+
+      .section {
+        height: 100vh;
+        display: grid;
+        color: white;
+        font-size: 2em;
+        position: relative;
+        background-size: contain;
+        transition: filter 0.5s ease;
+        background-size: cover;
+        background-size: contain;
+        filter: blur(5px);
+        overflow: auto;
+      }
+      
+      .section.blurred {
+        filter: none; 
+      }
+
+      .section:nth-child(even) {
+        background-color: #222;
+      }
+
+      .section:nth-child(odd) {
+        background-color: #444;
+          }
+
+      .background-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-size: auto;
+        background-position: center;
+        z-index: -1; 
+        transition: opacity 0.5s ease; 
+      }
+</style>
+</head>
+<body>
+  <!-- navigator -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #cdced3;color:white">
+    <div id="navbar" class="container-fluid">
+    <a class="navbar-brand" href="index.html"><img src="./img/nav_mountain.png" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html"><img src="./img/nav_home.png" alt=""> 首页 <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="file.html"><img src="./img/nav_file.png" alt=""> 作品集 </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="blog.html"><img src="./img/nav_blog.png" alt=""> 博客 </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="area.html"><img src="./img/nav_area.png" alt=""> 自留地 </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#contactMe"><img src="./img/nav_contact.png" alt=""> 联系我 </a>
+        </li>
+      </ul>
+    </div></div>
+  </nav>
+
+  <!-- 作品列表 -->
+  <div class="container-fluid">
+    <!-- 作品一 -->
+    <div class="section" id="section1" style="background-image: url(./img/area_music.jpg);">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 d-flex justify-content-center align-items-center">
+          <div style="max-width: 80%;">
+            <img src="./img/open.jpg" alt="" class="img-fluid" style="background-size: contain;">
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 d-flex justify-content-center" style="max-height: 100%;">
+          <div class="card" style="background-color: rgba(0, 0, 0, 0.5);margin: 10vh 0;width: 80%; border-radius: .7rem;">
+            <div class="card-body text-white">
+              <h1 class="card-title">作品名字</h1>
+              <br>
+              <p class="card-text">这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="section" id="section2" style="background-image: url('./img/area_book.jpg');">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 d-flex justify-content-center align-items-center">
+          <div style="max-width: 80%;">
+            <img src="./img/open.jpg" alt="" class="img-fluid" style="background-size: contain;">
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 d-flex justify-content-center">
+          <div class="card" style="background-color: rgba(0, 0, 0, 0.5);margin: 10vh 0;width: 80%; border-radius: .7rem;">
+            <div class="card-body text-white">
+              <h1 class="card-title">作品名字</h1>
+              <br>
+              <p class="card-text">这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="section3" style="background-image: url('./img/area_movie.jpg');">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 d-flex justify-content-center align-items-center">
+          <div style="max-width: 80%;">
+            <img src="./img/open.jpg" alt="" class="img-fluid" style="background-size: contain;">
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 d-flex justify-content-center">
+          <div class="card" style="background-color: rgba(0, 0, 0, 0.5);margin: 10vh 0;width: 80%; border-radius: .7rem;">
+            <div class="card-body text-white">
+              <h1 class="card-title">作品名字</h1>
+              <br>
+              <p class="card-text">这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍这是作品的介绍</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const sections = document.querySelectorAll('.section');
+  // 遍历每个 section 元素
+  sections.forEach((section) => {
+    // 添加鼠标移入事件监听器
+    section.addEventListener('mouseleave', () => {
+      // 移除模糊效果
+      section.classList.remove('blurred');
+      console.log(remove);
+    });
+
+    // 添加鼠标移出事件监听器
+    section.addEventListener('mouseenter', () => {
+      // 添加模糊效果
+      section.classList.add('blurred');
+      console.log(blur);
+    });
+  });
+</script>
+
+</body>
+</html>
+
+
+
+

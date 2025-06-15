@@ -5,7 +5,7 @@
 
 顾名思义，就是做了个网页小游戏，模拟开门大吉。不过数据都是静态的。
 
-想试试的可以访问https://nofilo.github.io/openHappiness/#。
+想试试的可以访问https://nofilo.github.io/openHappiness/#
 欢迎来玩！
 
 

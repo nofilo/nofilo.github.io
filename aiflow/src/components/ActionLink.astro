@@ -1,0 +1,6 @@
+---
+interface Props { href: string; label?: string; pending?: boolean; class?: string; }
+const { href, label, pending = false, class: className } = Astro.props;
+---
+<a href={pending ? '#next-page' : href} data-destination={pending ? href : undefined}
+  data-page-label={pending ? label : undefined} class:list={['action-link', className]}><slot /></a>

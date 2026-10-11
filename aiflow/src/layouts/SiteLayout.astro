@@ -1,0 +1,15 @@
+---
+import '../styles/global.css';
+import '../styles/cards.css';
+import '../styles/workspace.css';
+import '../styles/personal.css';
+import '../styles/motion.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PreviewNotice from '../components/PreviewNotice.astro';
+interface Props { title: string; description?: string; home?: boolean; }
+const { title, description = '按业务场景发现应用，让广告执行从容有序。', home = false } = Astro.props;
+---
+<!doctype html>
+<html lang="zh-CN" class:list={{ 'snap-home': home }}><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#222518" /><meta name="description" content={description} /><title>{title} · 广告执行部 AI 提效平台</title><link rel="preload" href="/assets/fonts/platform-sans.woff2" as="font" type="font/woff2" crossorigin /></head>
+<body><a href="#main" class="skip-link">跳到主要内容</a><div class="scroll-progress" aria-hidden="true"><i class="scroll-progress__bar"></i></div><Header overlay={home} active={Astro.url.pathname.startsWith("/workspace") ? "/workspace/" : Astro.url.pathname.startsWith("/me") ? "/me/" : "/"} /><main id="main" tabindex="-1"><slot /></main><Footer /><PreviewNotice /><script>import '../scripts/interactions';import '../scripts/motion';</script></body></html>

@@ -1,0 +1,15 @@
+---
+import film from '@phosphor-icons/core/assets/regular/film-strip.svg?raw';
+import video from '@phosphor-icons/core/assets/regular/device-mobile.svg?raw';
+import training from '@phosphor-icons/core/assets/regular/graduation-cap.svg?raw';
+import presentation from '@phosphor-icons/core/assets/regular/presentation-chart.svg?raw';
+import capture from '@phosphor-icons/core/assets/regular/device-mobile-camera.svg?raw';
+import inspection from '@phosphor-icons/core/assets/regular/magnifying-glass.svg?raw';
+import arrow from '@phosphor-icons/core/assets/regular/arrow-right.svg?raw';
+import open from '@phosphor-icons/core/assets/regular/arrow-up-right.svg?raw';
+import knowledge from '@phosphor-icons/core/assets/regular/books.svg?raw';
+const icons = { knowledge, film, video, training, presentation, capture, inspection, arrow, open };
+interface Props { name: keyof typeof icons; class?: string; }
+const { name, class: className } = Astro.props;
+---
+<span aria-hidden="true" class:list={['icon', className]} set:html={icons[name]} />

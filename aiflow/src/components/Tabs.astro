@@ -1,0 +1,8 @@
+---
+import type { NavigationItem } from '../data/navigation';
+interface Props { items: NavigationItem[]; active: string; label?: string; }
+const { items, active, label = '分类导航' } = Astro.props;
+---
+<nav class="category-tabs" aria-label={label}>{items.map(item => <a href={item.pending ? '#next-page' : item.href}
+  data-destination={item.pending ? item.href : undefined} data-page-label={item.pending ? item.label : undefined}
+  aria-current={item.href === active ? 'page' : undefined}>{item.label}</a>)}</nav>

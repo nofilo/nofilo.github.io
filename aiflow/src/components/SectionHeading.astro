@@ -1,0 +1,8 @@
+---
+interface Props { title: string; id?: string; label?: string; }
+const { title, id, label } = Astro.props;
+---
+<div class="section-heading" data-reveal>
+  {label && <div class="section-heading__head"><span class="section-heading__label">{label}</span><span class="section-heading__line" aria-hidden="true"></span></div>}
+  <div class="section-heading__row"><h2 id={id}>{title}</h2><slot name="action" /></div>
+</div>

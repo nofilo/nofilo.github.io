@@ -1,0 +1,59 @@
+---
+import KnowledgePanel from '../../components/KnowledgePanel.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Container from '../../components/Container.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import WorkspaceApps from '../../components/WorkspaceApps.astro';
+import { apps, scenes, businessNames } from '../../data/catalog';
+export function getStaticPaths() {
+  const paths: (string|undefined)[] = [undefined,'onboarding','onboarding/documents','onboarding/mini-program','knowledge','knowledge/search','knowledge/qa','knowledge/training'];
+  for (const b of Object.keys(businessNames)) { paths.push(b); for(const [s] of scenes) paths.push(`${b}/${s}`); }
+  for (const app of apps) paths.push(`apps/${app.id}`,`apps/${app.id}/guide`);
+  return paths.map(path=>({params:{path}}));
+}
+const parts = (Astro.params.path || '').split('/');
+const business = businessNames[parts[0]] ? parts[0] : '';
+const scene = scenes.find(([id])=>id===parts[1]);
+const app = parts[0]==='apps' ? apps.find(a=>a.id===parts[1]) : undefined;
+const guide=parts[2]==='guide';
+const legacyTargets:Record<string,string>={'onboarding':'/workspace/knowledge/','onboarding/documents':'/workspace/knowledge/search/','onboarding/mini-program':'/workspace/knowledge/qa/'};
+if(legacyTargets[Astro.params.path||'']) return Astro.redirect(legacyTargets[Astro.params.path!],301);
+const training=false;
+const knowledge=parts[0]==='knowledge';
+const overview=!Astro.params.path;
+const title=knowledge ? ({search:'知识检索',qa:'AI 问答',training:'新人培训'}[parts[1]]||'智能知识库') : app ? (guide?'使用说明':app.name) : training ? (parts[1]==='documents'?'文档合集':parts[1]==='mini-program'?'小程序':'新人培训') : scene ? scene[1] : business ? businessNames[business] : '工作区';
+const crumbs: {label:string;href?:string}[]=[{label:'首页',href:'/'},{label:'工作区',href:'/workspace/'}];
+if(business) crumbs.push({label:businessNames[business],href:`/workspace/${business}/`});
+if(scene) crumbs.push({label:scene[1]});
+if(training) {crumbs.push({label:'新人培训',href:'/workspace/onboarding/'});if(parts[1])crumbs.push({label:title});}
+if(knowledge){crumbs.push({label:'智能知识库',href:'/workspace/knowledge/'});if(parts[1])crumbs.push({label:title});}
+if(app) {crumbs.push({label:app.name,href:`/workspace/apps/${app.id}/`});if(guide)crumbs.push({label:'使用说明'});}
+const list=business?apps.filter(a=>a.business===business&&(!scene||a.scene===scene[0])):apps;
+const entries:Record<string,string>={
+ 'preview-capture':'https://api.winrobot360.com/redirect/robot/share?inviteKey=de3962bddf8cac9c',
+ 'brand-inspection':'https://api.winrobot360.com/redirect/robot/share?inviteKey=f3c2c2528df6fb4f',
+ 'long-video-data':'https://api.winrobot360.com/redirect/robot/share?inviteKey=2ae7dbc038522b91',
+};
+---
+<SiteLayout title={title}>
+<Container class="workspace-shell">
+<Breadcrumbs items={crumbs} />
+<header class="workspace-heading">{scene&&<p class="eyebrow">{businessNames[business]}</p>}<h1>{title}</h1>{app&&<p>{guide?app.name:app.desc}</p>}</header>
+{!app&&!scene&&!parts[1]&&<nav class="category-tabs" aria-label="业务分类">{[['','全部应用'],['knowledge','智能知识库'],['long-video','长视频'],['short-video','短视频']].map(([id,label])=><a href={`/workspace/${id?`${id}/`:''}`} aria-current={parts[0]===id?'page':undefined}>{label}</a>)}</nav>}
+{knowledge&&<KnowledgePanel section={parts[1]||''} />}
+{overview&&<>
+ <form class="workspace-search" data-search role="search"><input name="q" aria-label="搜索应用" placeholder="搜索应用或业务关键词" /><button class="button" type="submit">搜索</button><details><summary class="button">筛选</summary><div class="filter-fields"><label>应用形态<select name="type"><option value="">全部形态</option>{['影刀 RPA','脚本','AI Agent','Skills','Web 应用','飞书应用','桌面工具','API 应用'].map(t=><option>{t}</option>)}</select></label><label>应用状态<select name="status"><option value="">全部状态</option>{[...new Set(apps.map(a=>a.status))].map(s=><option>{s}</option>)}</select></label><button type="reset" class="button">清空筛选</button></div></details></form>
+ <p class="result-count" data-result-count aria-live="polite">{apps.length} 个应用</p><WorkspaceApps apps={apps} /><div class="workspace-empty" data-empty hidden><h2>暂无匹配应用</h2><p>试试其他关键词，或清空筛选。</p><a class="button" href="/workspace/">清空筛选</a></div><noscript><p>开启 JavaScript 后可搜索、筛选与收藏；全部应用仍可直接浏览。</p></noscript>
+</>}
+{business&&!scene&&<div class="scene-grid">{scenes.map(([id,label])=><section class="card scene-card"><h2><a href={`/workspace/${business}/${id}/`}>{label}</a></h2><ul>{list.filter(a=>a.scene===id).map(a=><li><a href={`/workspace/apps/${a.id}/`}>{a.name}<span aria-hidden="true">↗</span></a></li>)}</ul><a class="scene-action" href={`/workspace/${business}/${id}/`}>查看场景应用 <span aria-hidden="true">→</span></a></section>)}</div>}
+{scene&&<><nav class="category-tabs" aria-label="业务场景">{scenes.map(([id,label])=><a href={`/workspace/${business}/${id}/`} aria-current={id===scene[0]?'page':undefined}>{label}</a>)}</nav><WorkspaceApps apps={list} /></>}
+{training&&!parts[1]&&<div class="scene-grid"><section class="card scene-card"><h2>文档合集</h2><ul><li>培训文档</li><li>业务说明</li><li>学习资料</li></ul><a class="scene-action" href="/workspace/onboarding/documents/">查看文档合集 →</a></section><section class="card scene-card"><h2>小程序</h2><ul><li>新人学习地图</li><li><span class="status-badge status-pending">规划中</span></li></ul><a class="scene-action" href="/workspace/onboarding/mini-program/">查看培训应用 →</a></section></div>}
+{training&&parts[1]&&<section class="workspace-empty"><span class="status-badge status-pending">{parts[1]==='documents'?'待补充':'规划中'}</span><h2>{parts[1]==='documents'?'培训资料待整理':'新人学习地图'}</h2><p>{parts[1]==='documents'?'培训文档与查看入口整理后将在这里展示。':'按学习路径了解业务，逐步掌握执行工具。小程序入口待确认。'}</p><a class="button" href="/workspace/onboarding/">返回新人培训</a></section>}
+{app&&guide&&<div class="detail-main guide-content"><section><h2>准备材料</h2><p>{app.input}</p></section><section><h2>预期输出</h2><p>{app.output}</p></section><section><h2>操作说明</h2>{app.id==='ppt-v5'?<ol class="tool-steps"><li>下载并解压完整工具包，保留 images 文件夹。</li><li>将截图放入 images 下的 PC端、PAD端、手机-IOS端、手机-安卓端或 OTT端文件夹。</li><li>按“客户-平台-剧名-样式-第N集-日期”命名图片；日期使用 MMDD，例如 0818。各字段内不要包含连字符。</li><li>双击“生成PPT.exe”，在相同目录获取按客户、平台、剧名分组的 PPT。</li><li>若图片未生成，检查文件名；不符合规范的图片会跳过并提示。完整说明随工具包提供。</li></ol>:entries[app.id]?<p>通过详情页的“获取影刀应用”打开分享入口，按影刀应用内说明配置运行环境和输入材料。</p>:app.id==='monitor-capture'?<p>应用尚未发版，请联系乔文心获取应用与使用说明。</p>:app.id==='project-manager'?<p>飞书示例表仅用于内部配置，不对外公开。获取内部授权后，按项目资料与投放任务配置跟踪表。</p>:app.status==='待开发'?<p>巨量平台 API 功能待开发，目前不能执行。此页列出规划的输入与输出。</p>:<p>当前尚无已确认的操作说明。</p>}</section><a class="button" href={`/workspace/apps/${app.id}/`}>返回应用详情</a></div>}
+{app&&!guide&&<div class="workspace-detail"><div class="detail-main"><section><h2>应用介绍</h2><p>{app.desc}</p></section><section><h2>输入与输出</h2><dl><dt>需要准备</dt><dd>{app.input}</dd><dt>产出结果</dt><dd>{app.output}</dd></dl></section><section><h2>适用场景</h2><a class="action-link" href={`/workspace/${app.business}/${app.scene}/`}>{businessNames[app.business]} / {scenes.find(([id])=>id===app.scene)?.[1]}</a></section><section><h2>使用说明</h2><a class="action-link" href={`/workspace/apps/${app.id}/guide/`}>查看操作说明 →</a></section></div><aside class="detail-side"><span class:list={["status-badge", {"status-pending":["待开发","待上线","适配待确认"].includes(app.status)}]}>{app.status}</span><dl><dt>平台标签</dt><dd>{app.platforms.length?app.platforms.join(" · "):"通用"}</dd><dt>应用形态</dt><dd>{app.type}</dd><dt>负责人</dt><dd>{app.owner||'待补充'}</dd>{app.id==='ppt-v5'&&<><dt>适用系统</dt><dd>Windows · V5</dd></>}</dl>
+ {app.id==='ppt-v5'?<a class="button button--primary" href="/downloads/monitor-ppt-v5.zip" download data-record-recent={app.id}>下载工具包 V5</a>:entries[app.id]?<a class="button button--primary" href={entries[app.id]} target="_blank" rel="noopener noreferrer" data-record-recent={app.id}>获取影刀应用 ↗</a>:app.id==='monitor-capture'?<div class="access-note">联系乔文心获取应用</div>:<><button class="button" disabled>{['待开发','待上线','适配待确认'].includes(app.status)?app.status:app.id==='ppt-v5'?'下载入口待配置':'配置指引待补充'}</button>{app.id==='project-manager'&&<p class="access-note">示例表为内部配置资料，请联系负责人获取。</p>}</>}
+ <button class="button" data-favorite={app.id} aria-pressed="false">收藏应用</button><a class="action-link" href={`/me/requests/feedback/?app=${app.id}`}>反馈问题</a><p class="local-note">收藏保存在当前浏览器</p></aside></div>}
+<p class="local-feedback" role="status" data-local-feedback></p>
+</Container>
+<script>import '../../scripts/workspace';</script>
+</SiteLayout>

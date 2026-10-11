@@ -20,3 +20,8 @@
 
 - Knowledge migration approved: /workspace/knowledge/ contains search, qa and training. Retain legacy onboarding routes as compatibility redirects. Use uploaded aiflow source as visual baseline; retain its editorial homepage and add lightweight ordered business links. Knowledge search and AI answers remain unconnected until real services and materials are supplied.
 - public/downloads/: user-supplied downloadable tool archives, descriptive ASCII filenames; preserve original archives and do not execute bundled programs. Platform tags are separate from application form and availability status.
+
+## Approved GitHub Pages delivery
+- Site is hosted under /aiflow/. Preserve other repository sites.
+- scripts/export-pages.mjs copies the validated dist output into aiflow/ for branch-based Pages publishing; generated assets, workspace and me directories beside src are deployable output. Do not edit them directly.
+- No cleanup/deletions are performed automatically. Rebuild and verify before exporting and pushing.

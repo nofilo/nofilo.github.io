@@ -46,3 +46,9 @@ npm run preview
 - 内容默认可见，无 JavaScript 仍可阅读，未实现页面入口有页内说明。
 
 图片源于用户确认的生成背景。当前首轮不含发布配置，未公开部署。
+
+## GitHub Pages
+
+Public URL: https://nofilo.github.io/aiflow/
+
+From the aiflow directory run `npm run check`, `npm run build`, `npm run verify`, then `node scripts/export-pages.mjs`. Commit the source and exported files in this directory. The repository .nojekyll allows Astro assets in _astro to be served. Existing sibling sites are preserved. No automatic deletion is performed.

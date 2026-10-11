@@ -9,7 +9,7 @@ const { apps } = Astro.props;
   <div class="catalog-top"><span class="status-badge" class:list={{'status-pending':['待开发','待上线','适配待确认'].includes(app.status)}}>{app.status}</span><button class="save-app" data-favorite={app.id} aria-pressed="false" aria-label={`收藏${app.name}`}>收藏</button></div>
   <span class="card-symbol"><Icon name={app.business==='long-video'?'film':'video'} /></span>
   <div class="platform-tags">{app.platforms.map(platform=><span>{platform}</span>)}<span>{app.type}</span></div>
-  <h2><a href={`/workspace/apps/${app.id}/`}>{app.name}</a></h2><p>{app.desc}</p>
-  <div class="catalog-bottom"><span>{businessNames[app.business]}</span><a href={`/workspace/apps/${app.id}/`}>查看应用 <span aria-hidden="true">↗</span></a></div>
+  <h2><a href={`/aiflow/workspace/apps/${app.id}/`}>{app.name}</a></h2><p>{app.desc}</p>
+  <div class="catalog-bottom"><span>{businessNames[app.business]}</span><a href={`/aiflow/workspace/apps/${app.id}/`}>查看应用 <span aria-hidden="true">↗</span></a></div>
 </article>)}
 </div>

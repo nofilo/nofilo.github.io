@@ -25,8 +25,8 @@ const stats = [
   <section class="ticker-band" aria-label="已就绪应用">
     <Container>
       <p class="ticker-label">已就绪<span aria-hidden="true">Ready</span></p>
-      <ul class="ticker-list">{readyApps.map(app => <li><a href={`/workspace/apps/${app.id}/`}><span class="ticker-type">{app.type}</span><span class="ticker-name">{app.name}</span><span class="ticker-scene">{businessNames[app.business]} · {sceneName(app.scene)}</span></a></li>)}</ul>
-      <ActionLink href="/workspace/" label="全部应用" class="ticker-more">全部应用</ActionLink>
+      <ul class="ticker-list">{readyApps.map(app => <li><a href={`/aiflow/workspace/apps/${app.id}/`}><span class="ticker-type">{app.type}</span><span class="ticker-name">{app.name}</span><span class="ticker-scene">{businessNames[app.business]} · {sceneName(app.scene)}</span></a></li>)}</ul>
+      <ActionLink href="/aiflow/workspace/" label="全部应用" class="ticker-more">全部应用</ActionLink>
     </Container>
   </section>
   <Container class="home-content">
@@ -35,22 +35,22 @@ const stats = [
         <div class="mission-copy">
           <p class="mission-eyebrow">Platform</p>
           <h2 id="mission-title">按业务场景发现应用，<br />让广告执行从容有序。</h2>
-          <ActionLink href="/workspace/" label="进入工作区">进入工作区</ActionLink>
+          <ActionLink href="/aiflow/workspace/" label="进入工作区">进入工作区</ActionLink>
         </div>
         <div class="stats-band" aria-label="平台概览">
           {stats.map(stat => <p class="stats-item"><span class="stats-value"><span class="stats-number" data-count={stat.value}>{stat.value}</span><span class="stats-unit">{stat.unit}</span></span><span class="stats-label">{stat.label}</span></p>)}
         </div>
       </div>
     </section>
-    <nav class="knowledge-business-nav" aria-label="业务入口"><a href="/workspace/knowledge/">智能知识库 <span>↗</span></a><a href="/workspace/long-video/">长视频 <span>↗</span></a><a href="/workspace/short-video/">短视频 <span>↗</span></a></nav>
+    <nav class="knowledge-business-nav" aria-label="业务入口"><a href="/aiflow/workspace/knowledge/">智能知识库 <span>↗</span></a><a href="/aiflow/workspace/long-video/">长视频 <span>↗</span></a><a href="/aiflow/workspace/short-video/">短视频 <span>↗</span></a></nav>
     <section id="featured" class="featured-section" aria-labelledby="featured-title" data-reveal>
-      <SectionHeading label="Featured" title="常用应用" id="featured-title"><ActionLink slot="action" href="/workspace/" label="全部应用">查看全部应用</ActionLink></SectionHeading>
+      <SectionHeading label="Featured" title="常用应用" id="featured-title"><ActionLink slot="action" href="/aiflow/workspace/" label="全部应用">查看全部应用</ActionLink></SectionHeading>
       <div class="featured-grid">{featuredApps.map((app, index) => <AppCard app={app} featured lead={index === 0} />)}</div>
     </section>
     <section class="cta-band cta-band--accent" aria-labelledby="request-title" data-reveal>
       <div class="cta-band__inner">
         <div class="cta-band__copy"><p class="cta-eyebrow">Request</p><h2 id="request-title">有新的提效需求？</h2><p class="cta-description">描述流程中的重复劳动与断点，让它在平台里变成可复用的应用。</p></div>
-        <div class="cta-band__actions"><Button href="/me/requests/" label="AI 提需与反馈" variant="invert" class="cta-band__button" magnetic>提出需求</Button><ActionLink href="/me/help/faq/" label="常见问题" class="cta-band__secondary">先看看常见问题</ActionLink></div>
+        <div class="cta-band__actions"><Button href="/aiflow/me/requests/" label="AI 提需与反馈" variant="invert" class="cta-band__button" magnetic>提出需求</Button><ActionLink href="/aiflow/me/help/faq/" label="常见问题" class="cta-band__secondary">先看看常见问题</ActionLink></div>
       </div>
     </section>
   </Container>

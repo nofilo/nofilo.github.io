@@ -7,7 +7,7 @@ import Icon from './Icon.astro';
 import type { AppSummary } from '../data/home';
 interface Props { app: AppSummary; featured?: boolean; pending?: boolean; lead?: boolean; }
 const { app, featured = false, pending = false, lead = false } = Astro.props;
-const platforms = apps.find(item=>app.href === `/workspace/apps/${item.id}/`)?.platforms || [];
+const platforms = apps.find(item=>app.href === `/aiflow/workspace/apps/${item.id}/`)?.platforms || [];
 const availableStatuses = ['已有入口', '可下载'];
 const pendingStatuses = ['待开发', '待上线', '适配待确认'];
 const tone = app.status ? (availableStatuses.includes(app.status) ? 'available' : pendingStatuses.includes(app.status) ? 'pending' : 'neutral') : 'neutral';

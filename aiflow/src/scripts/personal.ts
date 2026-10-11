@@ -4,7 +4,7 @@ renderCollection();document.addEventListener('favorites-updated',renderCollectio
 type Draft={title:string;description:string;app?:string;business?:string};
 function readDraft(kind:string):Draft|null{try{const d=JSON.parse(localStorage.getItem(`platform-draft-${kind}`)||'null');return d&&typeof d.title==='string'&&typeof d.description==='string'?d:null;}catch{return null;}}
 const draftList=document.querySelector('[data-draft-list]');
-if(draftList){let count=0;for(const kind of ['new','feedback']){const draft=readDraft(kind);if(!draft)continue;const link=document.createElement('a');link.href=`/me/requests/${kind}/`;link.textContent=`${kind==='new'?'需求':'反馈'}草稿 · ${draft.title||'未命名'}`;draftList.append(link);count++;}if(!count)draftList.textContent='暂无本地草稿';}
+if(draftList){let count=0;for(const kind of ['new','feedback']){const draft=readDraft(kind);if(!draft)continue;const link=document.createElement('a');link.href=`/aiflow/me/requests/${kind}/`;link.textContent=`${kind==='new'?'需求':'反馈'}草稿 · ${draft.title||'未命名'}`;draftList.append(link);count++;}if(!count)draftList.textContent='暂无本地草稿';}
 const form=document.querySelector<HTMLFormElement>('[data-draft-form]');
 if(form){const kind=form.dataset.draftForm!;const saved=readDraft(kind);if(saved){for(const [name,value] of Object.entries(saved)){const field=form.elements.namedItem(name);if(field instanceof HTMLInputElement||field instanceof HTMLTextAreaElement||field instanceof HTMLSelectElement)field.value=String(value);}}
 const app=form.elements.namedItem('app');const linkedApp=new URLSearchParams(location.search).get('app');if(app instanceof HTMLSelectElement&&linkedApp&&Array.from(app.options).some(o=>o.value===linkedApp))app.value=linkedApp;

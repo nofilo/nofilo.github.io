@@ -11,9 +11,9 @@ const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
 assert.equal(new Set(ids).size, ids.length, 'Duplicate element ids');
 for (const [, href] of html.matchAll(/\bhref="([^"]+)"/g)) {
   if (href.startsWith('#')) assert.ok(ids.includes(href.slice(1)), `Missing anchor ${href}`);
-  else if (href.startsWith('/')) assert.ok(existsSync(join(root, 'dist', href === '/' ? 'index.html' : href)), `Missing local file ${href}`);
+  else if (href.startsWith('/')) assert.ok(existsSync(join(root, 'dist', href === '/aiflow/' ? 'index.html' : href.replace(/^\/aiflow\//,''))), `Missing local file ${href}`);
 }
-for (const [, src] of html.matchAll(/\b(?:src|srcset)="([^"]+)"/g)) if (src.startsWith('/')) assert.ok(existsSync(join(root, 'dist', src)), `Missing asset ${src}`);
+for (const [, src] of html.matchAll(/\b(?:src|srcset)="([^"]+)"/g)) if (src.startsWith('/')) assert.ok(existsSync(join(root, 'dist', src.replace(/^\/aiflow\//,''))), `Missing asset ${src}`);
 for (const resource of ['hero-desktop.webp','fonts/platform-sans.woff2','fonts/LICENSE.txt']) assert.ok(existsSync(join(root,'dist/assets',resource)));
 assert.ok(statSync(join(root,'dist/assets/hero-desktop.webp')).size < 400000, 'Hero should remain optimized');
 assert.ok(statSync(join(root,'dist/assets/fonts/platform-sans.woff2')).size < 150000, 'Homepage font subset too large');

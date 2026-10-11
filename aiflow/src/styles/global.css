@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 @import './tokens.css';
 
-@font-face{font-family:'Platform Sans';src:url('/assets/fonts/platform-sans.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Platform Sans';src:url('/aiflow/assets/fonts/platform-sans.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
 *{box-sizing:border-box}
 html{scroll-padding-top:32px;overflow-x:clip}
 body{min-width:1024px;margin:0;background:var(--color-bg);color:var(--color-text);font-family:var(--font-sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}

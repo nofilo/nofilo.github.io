@@ -8,7 +8,15 @@ import inspection from '@phosphor-icons/core/assets/regular/magnifying-glass.svg
 import arrow from '@phosphor-icons/core/assets/regular/arrow-right.svg?raw';
 import open from '@phosphor-icons/core/assets/regular/arrow-up-right.svg?raw';
 import knowledge from '@phosphor-icons/core/assets/regular/books.svg?raw';
-const icons = { knowledge, film, video, training, presentation, capture, inspection, arrow, open };
+import bookmark from '@phosphor-icons/core/assets/regular/bookmark-simple.svg?raw';
+import clock from '@phosphor-icons/core/assets/regular/clock.svg?raw';
+import chat from '@phosphor-icons/core/assets/regular/chat-circle-text.svg?raw';
+import tasks from '@phosphor-icons/core/assets/regular/clipboard-text.svg?raw';
+import bell from '@phosphor-icons/core/assets/regular/bell.svg?raw';
+import key from '@phosphor-icons/core/assets/regular/key.svg?raw';
+import settings from '@phosphor-icons/core/assets/regular/gear.svg?raw';
+import home from '@phosphor-icons/core/assets/regular/house.svg?raw';
+const icons = { bookmark,clock,chat,tasks,bell,key,settings,home, knowledge, film, video, training, presentation, capture, inspection, arrow, open };
 interface Props { name: keyof typeof icons; class?: string; }
 const { name, class: className } = Astro.props;
 ---

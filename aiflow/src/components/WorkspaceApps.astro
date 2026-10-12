@@ -5,11 +5,12 @@ interface Props { apps: CatalogApp[]; }
 const { apps } = Astro.props;
 ---
 <div class="workspace-apps">
-{apps.map(app => <article class="card catalog-card" data-app-id={app.id} data-app-card data-name={`${app.name} ${app.desc} ${app.platforms.join(" ")} ${businessNames[app.business]} ${scenes.find(([id])=>id===app.scene)?.[1]}`} data-type={app.type} data-status={app.status}>
-  <div class="catalog-top"><span class="status-badge" class:list={{'status-pending':['待开发','待上线','适配待确认'].includes(app.status)}}>{app.status}</span><button class="save-app" data-favorite={app.id} aria-pressed="false" aria-label={`收藏${app.name}`}>收藏</button></div>
-  <span class="card-symbol"><Icon name={app.business==='long-video'?'film':'video'} /></span>
-  <div class="platform-tags">{app.platforms.map(platform=><span>{platform}</span>)}<span>{app.type}</span></div>
-  <h2><a href={`/aiflow/workspace/apps/${app.id}/`}>{app.name}</a></h2><p>{app.desc}</p>
-  <div class="catalog-bottom"><span>{businessNames[app.business]}</span><a href={`/aiflow/workspace/apps/${app.id}/`}>查看应用 <span aria-hidden="true">↗</span></a></div>
+{apps.map(app => <article class="card catalog-card" data-app-id={app.id} data-app-card data-name={`${app.name} ${app.desc} ${app.platforms.join(" ")} ${businessNames[app.business]} ${scenes.find(([id])=>id===app.scene)?.[1]}`} data-business={app.business} data-platforms={JSON.stringify(app.platforms)} data-type={app.type} data-status={app.status}>
+  <a class="catalog-cover" href={`/aiflow/workspace/apps/${app.id}/`} aria-label={`查看${app.name}`}><img src={`/aiflow/assets/cover-${app.id}-bright-v1.webp`} alt="" width="800" height="450" loading="lazy" /><span class="cover-caption">功能示意</span></a>
+  <div class="catalog-top"><span class="catalog-icon"><Icon name={app.id==='ppt-v5'?'presentation':app.id==='brand-inspection'?'inspection':app.id.startsWith('preview-capture')?'capture':app.business==='long-video'?'film':'video'} /></span><div class="catalog-identity"><h2><a href={`/aiflow/workspace/apps/${app.id}/`}>{app.name}</a></h2><div class="platform-tags">{app.platforms.map(platform=><span>{platform}</span>)}<span>{app.type}</span></div></div><span class:list={['status-badge',{'status-ready':['已有入口','可下载'].includes(app.status),'status-pending':['待开发','待上线','适配待确认','配置使用','联系获取'].includes(app.status),'status-error':['维护中','已下线','异常'].includes(app.status)}]}><i aria-hidden="true"></i>{app.status}</span></div>
+  <p>{app.desc}</p>
+  <div class="catalog-bottom"><a href={`/aiflow/workspace/apps/${app.id}/`}>{app.id==='monitor-capture'?'联系乔文心':'查看应用'} <Icon name="arrow"/></a><button class="save-app" data-favorite={app.id} aria-pressed="false" aria-label={`收藏${app.name}`}><Icon name="bookmark"/><span data-favorite-label class="visually-hidden">收藏</span></button></div>
 </article>)}
 </div>
+
+

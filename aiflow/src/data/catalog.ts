@@ -28,7 +28,7 @@ export const apps: CatalogApp[] = [
   },
   {
     "id": "monitor-capture",
-    "name": "自动监播采集",
+    "name": "秒针监播采集",
     "business": "long-video",
     "scene": "launch-review",
     "type": "影刀 RPA",
@@ -38,7 +38,8 @@ export const apps: CatalogApp[] = [
     "output": "监播截图",
     "owner": "乔文心",
     "platforms": [
-      "影刀"
+      "影刀",
+      "秒针"
     ]
   },
   {
@@ -54,6 +55,30 @@ export const apps: CatalogApp[] = [
     "platforms": [
       "影刀"
     ]
+  },
+  {
+    "id": "ai-daily-report",
+    "name": "AI 数据日报",
+    "business": "long-video",
+    "scene": "data-collection",
+    "type": "AI Agent",
+    "status": "待开发",
+    "desc": "汇总长视频投放数据，辅助生成每日分析。",
+    "input": "投放数据与日报要求",
+    "output": "数据日报",
+    "platforms": []
+  },
+  {
+    "id": "ai-closing-copy",
+    "name": "AI 结案话术",
+    "business": "long-video",
+    "scene": "closing",
+    "type": "AI Agent",
+    "status": "待开发",
+    "desc": "根据项目表现，辅助整理结案总结话术。",
+    "input": "项目数据与结案重点",
+    "output": "结案总结话术",
+    "platforms": []
   },
   {
     "id": "ppt-v5",
@@ -79,6 +104,20 @@ export const apps: CatalogApp[] = [
     "desc": "通过巨量平台接口批量创建预定单与广告计划。",
     "input": "投放参数与计划信息",
     "output": "批量广告计划",
+    "platforms": [
+      "巨量平台"
+    ]
+  },
+  {
+    "id": "ad-change",
+    "name": "自动撤改单",
+    "business": "short-video",
+    "scene": "campaign-setup",
+    "type": "API 应用",
+    "status": "待开发",
+    "desc": "通过巨量平台接口批量处理广告计划撤销与修改。",
+    "input": "待撤改计划与变更要求",
+    "output": "撤改结果",
     "platforms": [
       "巨量平台"
     ]
@@ -113,12 +152,40 @@ export const apps: CatalogApp[] = [
   },
   {
     "id": "preview-capture",
-    "name": "创意拷屏预览",
+    "name": "开屏-创意拷屏预览",
     "business": "short-video",
     "scene": "launch-review",
     "type": "影刀 RPA",
     "status": "已有入口",
-    "desc": "手机自动扫码，收集广告创意预览。",
+    "desc": "手机自动扫码，收集开屏广告创意预览。",
+    "input": "广告预览二维码",
+    "output": "创意预览截图",
+    "platforms": [
+      "影刀"
+    ]
+  },
+  {
+    "id": "preview-capture-feed",
+    "name": "信息流-创意拷屏预览",
+    "business": "short-video",
+    "scene": "launch-review",
+    "type": "影刀 RPA",
+    "status": "已有入口",
+    "desc": "手机自动扫码，收集信息流广告创意预览。",
+    "input": "广告预览二维码",
+    "output": "创意预览截图",
+    "platforms": [
+      "影刀"
+    ]
+  },
+  {
+    "id": "preview-capture-seeding",
+    "name": "种草通-创意拷屏预览",
+    "business": "short-video",
+    "scene": "launch-review",
+    "type": "影刀 RPA",
+    "status": "已有入口",
+    "desc": "手机自动扫码，收集种草通广告创意预览。",
     "input": "广告预览二维码",
     "output": "创意预览截图",
     "platforms": [
@@ -141,6 +208,18 @@ export const apps: CatalogApp[] = [
     ]
   },
   {
+    "id": "short-daily-report",
+    "name": "数据日报更新",
+    "business": "short-video",
+    "scene": "data-collection",
+    "type": "脚本",
+    "status": "待开发",
+    "desc": "整理最新短视频投放数据，更新日报。",
+    "input": "最新投放数据与日报模板",
+    "output": "更新后的日报",
+    "platforms": []
+  },
+  {
     "id": "delivery-data",
     "name": "投放数据自动下载",
     "business": "short-video",
@@ -153,6 +232,30 @@ export const apps: CatalogApp[] = [
     "platforms": [
       "巨量平台"
     ]
+  },
+  {
+    "id": "closing-report",
+    "name": "文字版结案报告生成",
+    "business": "short-video",
+    "scene": "closing",
+    "type": "AI Agent",
+    "status": "待开发",
+    "desc": "根据投放数据与执行记录，生成文字版结案报告。",
+    "input": "投放数据与执行记录",
+    "output": "文字版结案报告",
+    "platforms": []
+  },
+  {
+    "id": "asset-library",
+    "name": "资产沉淀",
+    "business": "short-video",
+    "scene": "closing",
+    "type": "Skills",
+    "status": "待开发",
+    "desc": "沉淀结案经验、交付规范与可复用执行方法。",
+    "input": "结案材料与执行经验",
+    "output": "可复用 Skills 与业务资产",
+    "platforms": []
   },
   {
     "id": "short-closing",

@@ -20,8 +20,14 @@
 
 - Knowledge migration approved: /workspace/knowledge/ contains search, qa and training. Retain legacy onboarding routes as compatibility redirects. Use uploaded aiflow source as visual baseline; retain its editorial homepage and add lightweight ordered business links. Knowledge search and AI answers remain unconnected until real services and materials are supplied.
 - public/downloads/: user-supplied downloadable tool archives, descriptive ASCII filenames; preserve original archives and do not execute bundled programs. Platform tags are separate from application form and availability status.
+- Approved local UI refinement: workspace uses search-led compact catalog cards; personal overview uses real local favorite/recent lists and a request/draft rail. Apply only to this conversation site, not the Desktop repository; no GitHub operations during this iteration.
+- Status badge update approved: green means a confirmed entry/download, amber means pending/configuration/contact required, red means maintenance/offline/error. Keep text labels; never invent error states. Catalog status pills sit at the upper left. These semantic colors are exceptions to the brand accent rule.
+- Catalog image cards approved: use 16:9 locally hosted editorial covers above app information; label conceptual imagery 功能示意. Store versioned covers directly in public/assets/. Preserve actual statuses, links and favorites. No GitHub operations.
+
+- Approved catalog expansion: knowledge becomes 知识百宝箱 with materials, media, training, assistant and library entries. Preserve old knowledge routes as redirects. Business catalog expands to 20 apps; retain existing IDs and shared preview entry. Unknown resource links remain disabled. New covers follow the approved bright technology style; preserve originals in outputs/.
 
 ## Approved GitHub Pages delivery
 - Site is hosted under /aiflow/. Preserve other repository sites.
-- scripts/export-pages.mjs copies the validated dist output into aiflow/ for branch-based Pages publishing; generated assets, workspace and me directories beside src are deployable output. Do not edit them directly.
-- No cleanup/deletions are performed automatically. Rebuild and verify before exporting and pushing.
+- Deployment source uses /aiflow/ links and the existing Astro base configuration.
+- scripts/export-pages.mjs copies validated dist output beside src for branch-based Pages publishing.
+- No automatic cleanup or deletions. Rebuild and verify before exporting and pushing.

@@ -10,7 +10,7 @@ import { featuredApps } from '../data/home';
 import { apps, scenes, businessNames } from '../data/catalog';
 const appTypes = new Set(apps.map(app => app.type));
 const sceneName = (id: string) => scenes.find(scene => scene[0] === id)?.[1] ?? '';
-const readyStatuses = ['已有入口', '可下载'];
+const readyStatuses = ['已上线'];
 const readyApps = apps.filter(app => readyStatuses.includes(app.status)).slice(0, 4);
 const readyCount = apps.filter(app => readyStatuses.includes(app.status)).length;
 const stats = [
@@ -25,7 +25,7 @@ const stats = [
   <section class="ticker-band" aria-label="已就绪应用">
     <Container>
       <p class="ticker-label">已就绪<span aria-hidden="true">Ready</span></p>
-      <ul class="ticker-list">{readyApps.map(app => <li><a href={`/aiflow/workspace/apps/${app.id}/`}><span class="ticker-type">{app.type}</span><span class="ticker-name">{app.name}</span><span class="ticker-scene">{businessNames[app.business]} · {sceneName(app.scene)}</span></a></li>)}</ul>
+      <ul class="ticker-list">{readyApps.map(app => <li><a href={app.href || `/aiflow/workspace/apps/${app.id}/`}><span class="ticker-type">{app.type}</span><span class="ticker-name">{app.name}</span><span class="ticker-scene">{businessNames[app.business]} · {sceneName(app.scene)}</span></a></li>)}</ul>
       <ActionLink href="/aiflow/workspace/" label="全部应用" class="ticker-more">全部应用</ActionLink>
     </Container>
   </section>

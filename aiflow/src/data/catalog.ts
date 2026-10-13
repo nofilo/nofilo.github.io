@@ -1,5 +1,6 @@
-export interface CatalogApp { id:string; name:string; business:string; scene:string; type:string; status:string; desc:string; input:string; output:string; owner?:string; platforms:string[]; }
-export const apps: CatalogApp[] = [
+import { knowledgeEntries } from './knowledge';
+export interface CatalogApp { id:string; name:string; business:string; scene:string; type:string; status: "待开发" | "待上线" | "已上线"; accessNote?:string; href?:string; desc:string; input:string; output:string; owner?:string; documentUrl?:string; platforms:string[]; }
+const businessApps: CatalogApp[] = [
   {
     "id": "ai-selection",
     "name": "AI 辅助选点",
@@ -18,13 +19,14 @@ export const apps: CatalogApp[] = [
     "business": "long-video",
     "scene": "campaign-setup",
     "type": "飞书应用",
-    "status": "配置使用",
+    "status": "待上线",
     "desc": "记录投放任务，跟踪项目执行进度。",
     "input": "项目资料、投放任务",
     "output": "任务记录与跟踪视图",
     "platforms": [
       "飞书"
-    ]
+    ],
+    "accessNote": "配置使用"
   },
   {
     "id": "monitor-capture",
@@ -32,7 +34,7 @@ export const apps: CatalogApp[] = [
     "business": "long-video",
     "scene": "launch-review",
     "type": "影刀 RPA",
-    "status": "联系获取",
+    "status": "待上线",
     "desc": "采集监播截图，整理投放验收材料。",
     "input": "监播任务与采集条件",
     "output": "监播截图",
@@ -40,7 +42,8 @@ export const apps: CatalogApp[] = [
     "platforms": [
       "影刀",
       "秒针"
-    ]
+    ],
+    "accessNote": "联系获取"
   },
   {
     "id": "long-video-data",
@@ -48,13 +51,14 @@ export const apps: CatalogApp[] = [
     "business": "long-video",
     "scene": "data-collection",
     "type": "影刀 RPA",
-    "status": "已有入口",
+    "status": "已上线",
     "desc": "自动获取并更新长视频投放数据。",
     "input": "投放项目与数据来源",
     "output": "更新后的项目数据",
     "platforms": [
       "影刀"
-    ]
+    ],
+    "accessNote": "已有入口"
   },
   {
     "id": "ai-daily-report",
@@ -86,13 +90,14 @@ export const apps: CatalogApp[] = [
     "business": "long-video",
     "scene": "closing",
     "type": "桌面工具",
-    "status": "可下载",
+    "status": "已上线",
     "desc": "按命名与顺序整理截图，生成监播 PPT。",
     "input": "按要求命名的监播图片",
     "output": "既定格式的监播 PPT",
     "platforms": [
       "Windows"
-    ]
+    ],
+    "accessNote": "可下载"
   },
   {
     "id": "ad-plan",
@@ -137,6 +142,22 @@ export const apps: CatalogApp[] = [
     ]
   },
   {
+    "id": "platform-order-entry",
+    "name": "平台智能录单",
+    "scene": "campaign-setup",
+    "documentUrl": "https://support.oceanengine.com/support/content/207442?mappingType=2&pageId=461&spaceId=252&timestamp=1775109819828&visitor_source=help_main_site",
+    "desc": "巨量平台智能录单工具，先查看官方介绍与使用说明。",
+    "business": "short-video",
+    "type": "平台工具",
+    "status": "待上线",
+    "input": "以工具介绍文档为准",
+    "output": "以工具介绍文档为准",
+    "platforms": [
+      "巨量平台"
+    ],
+    "accessNote": "接入待定"
+  },
+  {
     "id": "qr-download",
     "name": "二维码自动下载",
     "business": "short-video",
@@ -156,13 +177,14 @@ export const apps: CatalogApp[] = [
     "business": "short-video",
     "scene": "launch-review",
     "type": "影刀 RPA",
-    "status": "已有入口",
+    "status": "已上线",
     "desc": "手机自动扫码，收集开屏广告创意预览。",
     "input": "广告预览二维码",
     "output": "创意预览截图",
     "platforms": [
       "影刀"
-    ]
+    ],
+    "accessNote": "已有入口"
   },
   {
     "id": "preview-capture-feed",
@@ -170,13 +192,14 @@ export const apps: CatalogApp[] = [
     "business": "short-video",
     "scene": "launch-review",
     "type": "影刀 RPA",
-    "status": "已有入口",
+    "status": "已上线",
     "desc": "手机自动扫码，收集信息流广告创意预览。",
     "input": "广告预览二维码",
     "output": "创意预览截图",
     "platforms": [
       "影刀"
-    ]
+    ],
+    "accessNote": "已有入口"
   },
   {
     "id": "preview-capture-seeding",
@@ -184,13 +207,14 @@ export const apps: CatalogApp[] = [
     "business": "short-video",
     "scene": "launch-review",
     "type": "影刀 RPA",
-    "status": "已有入口",
+    "status": "已上线",
     "desc": "手机自动扫码，收集种草通广告创意预览。",
     "input": "广告预览二维码",
     "output": "创意预览截图",
     "platforms": [
       "影刀"
-    ]
+    ],
+    "accessNote": "已有入口"
   },
   {
     "id": "brand-inspection",
@@ -198,14 +222,31 @@ export const apps: CatalogApp[] = [
     "business": "short-video",
     "scene": "launch-review",
     "type": "影刀 RPA",
-    "status": "已有入口",
+    "status": "已上线",
     "desc": "逐一核查品专词包，记录异常并反馈媒体核查。",
     "input": "品专词包与核查要求",
     "output": "巡查记录与异常反馈",
     "platforms": [
       "影刀",
       "飞书"
-    ]
+    ],
+    "accessNote": "已有入口"
+  },
+  {
+    "id": "fulfillment-assistant",
+    "name": "履约小助手",
+    "scene": "launch-review",
+    "documentUrl": "https://bytedance.larkoffice.com/docx/G63PdZqRnoDmx9xdhZEcbcVNnTd?from=from_copylink",
+    "desc": "巨量平台履约工具，先查看工具介绍文档。",
+    "business": "short-video",
+    "type": "平台工具",
+    "status": "待上线",
+    "input": "以工具介绍文档为准",
+    "output": "以工具介绍文档为准",
+    "platforms": [
+      "巨量平台"
+    ],
+    "accessNote": "接入待定"
   },
   {
     "id": "short-daily-report",
@@ -263,12 +304,15 @@ export const apps: CatalogApp[] = [
     "business": "short-video",
     "scene": "closing",
     "type": "桌面工具",
-    "status": "适配待确认",
+    "status": "待上线",
     "desc": "整理结案材料，按客户要求生成交付文件。",
     "input": "结案材料与模板要求",
     "output": "结案交付文件",
-    "platforms": []
+    "platforms": [],
+    "accessNote": "适配待确认"
   }
 ];
 export const scenes = [["campaign-setup", "投放搭建"], ["launch-review", "上线验收"], ["data-collection", "数据回收"], ["closing", "结案交付"]];
-export const businessNames: Record<string,string> = {"long-video":"长视频","short-video":"短视频"};
+export const businessNames: Record<string,string> = {"knowledge":"知识百宝箱","long-video":"长视频","short-video":"短视频"};
+
+export const apps: CatalogApp[] = [...knowledgeEntries.map(entry => ({id:`knowledge-${entry.slug}`, name:entry.title, business:"knowledge", scene:entry.slug, type:entry.type, status:entry.status, desc:entry.description, input:"以介绍页面为准", output:"以介绍页面为准", platforms:entry.href?["飞书"]:[], href:`/aiflow/workspace/knowledge/${entry.slug}/`})), ...businessApps];

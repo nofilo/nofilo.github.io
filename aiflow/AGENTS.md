@@ -26,6 +26,10 @@
 
 - Approved catalog expansion: knowledge becomes 知识百宝箱 with materials, media, training, assistant and library entries. Preserve old knowledge routes as redirects. Business catalog expands to 20 apps; retain existing IDs and shared preview entry. Unknown resource links remain disabled. New covers follow the approved bright technology style; preserve originals in outputs/.
 
+- Approved ByteDance entries: platform-order-entry belongs to short-video/campaign-setup; fulfillment-assistant belongs to short-video/launch-review. Both are external platform tools with document-only access and 接入待定 status. Do not imply runnable integration or verified document contents. Generate bright matching covers; local changes only.
+
+- Catalog normalization: statuses are only 待开发 / 待上线 / 已上线; acquisition conditions remain separate notes. 字节平台 is labeled 巨量平台. Knowledge entries are included in all-app search/filter/favorites with their existing knowledge routes; only video businesses generate execution scene routes.
+
 ## Approved GitHub Pages delivery
 - Site is hosted under /aiflow/. Preserve other repository sites.
 - Deployment source uses /aiflow/ links and the existing Astro base configuration.

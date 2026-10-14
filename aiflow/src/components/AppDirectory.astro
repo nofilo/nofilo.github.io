@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+import WorkspaceApps from './WorkspaceApps.astro';
+import { businessNames, type CatalogApp } from '../data/catalog';
+interface Props { apps:CatalogApp[]; showBusiness?:boolean; knowledge?:boolean; }
+const {apps,showBusiness=false,knowledge=false}=Astro.props;
+---
+<div class="business-directory"><aside class="directory-rail"><slot name="navigation"/>{knowledge&&<nav class="scene-sidebar knowledge-views" aria-label="知识应用视图"><p>快捷视图</p>{[["all","全部应用","grid"],["favorites","我的收藏","bookmark"],["recent","最近使用","clock"]].map(([id,label,icon])=><button type="button" data-directory-view={id} aria-pressed={id==='all'?'true':'false'}><Icon name={icon as "grid"|"bookmark"|"clock"}/><span>{label}</span></button>)}</nav>}  <section class="rail-filters"><header><span><Icon name="filter"/>筛选</span><button type="reset" form="directory-search-form">清空</button></header><div class="directory-fields">
+  {showBusiness?<label>业务<select form="directory-search-form" name="business"><option value="">全部业务</option>{Object.entries(businessNames).map(([id,label])=><option value={id}>{label}</option>)}</select></label>:<input form="directory-search-form" type="hidden" name="business" value=""/>}
+  <label>平台<select form="directory-search-form" name="platform"><option value="">全部平台</option>{[...new Set(apps.flatMap(a=>a.platforms))].map(p=><option>{p}</option>)}</select></label>
+  <label>应用形态<select form="directory-search-form" name="type"><option value="">全部形态</option>{[...new Set(apps.map(a=>a.type))].map(t=><option>{t}</option>)}</select></label>
+  <label>状态<select form="directory-search-form" name="status"><option value="">全部状态</option>{['待开发','待上线','已上线'].map(s=><option>{s}</option>)}</select></label>
+  </div></section>
+</aside><section class="app-directory business-results" aria-label="应用目录">
+<form id="directory-search-form" class="directory-form" data-search role="search">
+  <div class="directory-caption"><Icon name="grid"/><h2>应用列表</h2><span data-result-count role="status" aria-live="polite">{apps.length} 个应用</span></div><div class="directory-search"><input name="q" aria-label="搜索应用" placeholder="搜索应用…" /><button class="button search-submit" type="submit" aria-label="搜索应用"><Icon name="inspection"/></button></div>
+</form>
+<div class="directory-feedback"><div class="filter-chips" data-filter-chips aria-label="已选条件"></div></div>
+<WorkspaceApps apps={apps}/>
+<div class="workspace-empty" data-empty hidden><h2>没有找到匹配应用</h2><p>减少筛选条件，或尝试其他关键词。</p><button type="button" class="button" data-clear-filters>清空条件</button></div>
+<noscript>开启 JavaScript 后可搜索、筛选与收藏；应用仍可直接浏览。</noscript>
+</section>
+</div>
+

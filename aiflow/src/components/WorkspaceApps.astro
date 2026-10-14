@@ -1,13 +1,13 @@
 ---
-import { businessNames, scenes, type CatalogApp } from '../data/catalog';
+import { businessNames, sceneLabel, type CatalogApp } from '../data/catalog';
 import Icon from './Icon.astro';
 interface Props { apps: CatalogApp[]; }
 const { apps } = Astro.props;
 ---
 <div class="workspace-apps">
-{apps.map(app => <article class="card catalog-card" data-app-id={app.id} data-app-card data-name={`${app.name} ${app.desc} ${app.platforms.join(" ")} ${businessNames[app.business]} ${scenes.find(([id])=>id===app.scene)?.[1]}`} data-business={app.business} data-platforms={JSON.stringify(app.platforms)} data-type={app.type} data-status={app.status}>
+{apps.map(app => <article class="card catalog-card" data-app-id={app.id} data-app-card data-name={`${app.name} ${app.desc} ${app.platforms.join(" ")} ${businessNames[app.business]} ${sceneLabel(app.business,app.scene)}`} data-business={app.business} data-platforms={JSON.stringify(app.platforms)} data-type={app.type} data-status={app.status}>
   <a class="catalog-cover" href={app.href || `/aiflow/workspace/apps/${app.id}/`} aria-label={`查看${app.name}`}><img src={`/aiflow/assets/cover-${app.id}-bright-v1.webp`} alt="" width="800" height="450" loading="lazy" /><span class="cover-caption">功能示意</span></a>
-  <div class="catalog-top"><span class="catalog-icon"><Icon name={app.id==='ppt-v5'?'presentation':app.id==='brand-inspection'?'inspection':app.id.startsWith('preview-capture')?'capture':app.business==='long-video'?'film':'video'} /></span><div class="catalog-identity"><h2><a href={app.href || `/aiflow/workspace/apps/${app.id}/`}>{app.name}</a></h2><div class="platform-tags">{app.platforms.map(platform=><span>{platform}</span>)}<span>{app.type}</span></div></div><span class:list={['status-badge',{'status-ready':['已上线'].includes(app.status),'status-pending':['待开发','待上线'].includes(app.status),'status-error':['维护中','已下线','异常'].includes(app.status)}]}><i aria-hidden="true"></i>{app.status}</span></div>
+  <div class="catalog-top"><span class="catalog-icon"><Icon name={app.business==='knowledge'?(app.id==='knowledge-training'?'training':app.id==='knowledge-assistant'?'chat':'knowledge'):app.id==='ppt-v5'?'presentation':app.id==='brand-inspection'?'inspection':app.id.startsWith('preview-capture')?'capture':app.business==='long-video'?'film':'video'} /></span><div class="catalog-identity"><h2><a class="app-main-link" data-record-recent={app.id} href={app.href || `/aiflow/workspace/apps/${app.id}/`}>{app.name}</a></h2><div class="platform-tags">{app.platforms.map(platform=><span>{platform}</span>)}<span>{app.type}</span></div></div><span class:list={['status-badge',{'status-ready':['已上线'].includes(app.status),'status-pending':['待开发','待上线'].includes(app.status),'status-error':['维护中','已下线','异常'].includes(app.status)}]}><i aria-hidden="true"></i>{app.status}</span></div>
   <p>{app.desc}</p>
   <div class="catalog-bottom"><a href={app.href || `/aiflow/workspace/apps/${app.id}/`}>{app.id==='monitor-capture'?'联系乔文心':'查看应用'} <Icon name="arrow"/></a><button class="save-app" data-favorite={app.id} aria-pressed="false" aria-label={`收藏${app.name}`}><Icon name="bookmark"/><span data-favorite-label class="visually-hidden">收藏</span></button></div>
 </article>)}

@@ -30,6 +30,10 @@
 
 - Catalog normalization: statuses are only 待开发 / 待上线 / 已上线; acquisition conditions remain separate notes. 字节平台 is labeled 巨量平台. Knowledge entries are included in all-app search/filter/favorites with their existing knowledge routes; only video businesses generate execution scene routes.
 
+- Approved local layout trial: video businesses use left scene navigation and shared searchable image-card lists, like knowledge. Knowledge has no scene layer. Use business-specific scene names and icons without changing URLs. Filters expand inline with removable selected chips and visible counts. Publish only after user review.
+
+- Approved refinement: shared directory owns a permanent left rail for scene/view navigation and filters. Knowledge views (all/favorites/recent) do not add business hierarchy. Search remains on the right; preserve URL filter state and local storage behavior.
+
 ## Approved GitHub Pages delivery
 - Site is hosted under /aiflow/. Preserve other repository sites.
 - Deployment source uses /aiflow/ links and the existing Astro base configuration.

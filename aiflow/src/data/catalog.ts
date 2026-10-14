@@ -316,3 +316,6 @@ export const scenes = [["campaign-setup", "投放搭建"], ["launch-review", "�
 export const businessNames: Record<string,string> = {"knowledge":"知识百宝箱","long-video":"长视频","short-video":"短视频"};
 
 export const apps: CatalogApp[] = [...knowledgeEntries.map(entry => ({id:`knowledge-${entry.slug}`, name:entry.title, business:"knowledge", scene:entry.slug, type:entry.type, status:entry.status, desc:entry.description, input:"以介绍页面为准", output:"以介绍页面为准", platforms:entry.href?["飞书"]:[], href:`/aiflow/workspace/knowledge/${entry.slug}/`})), ...businessApps];
+
+const sceneLabels: Record<string,string[]> = {'short-video':['智能搭建系统','智能风控系统','全域数管系统','智能交付系统'],'long-video':['链路前置规划','自动监播核验','数据智能聚合','一键交付引擎']};
+export const sceneLabel=(business:string, id:string)=>sceneLabels[business]?.[scenes.findIndex(([key])=>key===id)] || scenes.find(([key])=>key===id)?.[1] || '';

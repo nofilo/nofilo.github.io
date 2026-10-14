@@ -16,7 +16,14 @@ import bell from '@phosphor-icons/core/assets/regular/bell.svg?raw';
 import key from '@phosphor-icons/core/assets/regular/key.svg?raw';
 import settings from '@phosphor-icons/core/assets/regular/gear.svg?raw';
 import home from '@phosphor-icons/core/assets/regular/house.svg?raw';
-const icons = { bookmark,clock,chat,tasks,bell,key,settings,home, knowledge, film, video, training, presentation, capture, inspection, arrow, open };
+import planning from '@phosphor-icons/core/assets/regular/flow-arrow.svg?raw';
+import shield from '@phosphor-icons/core/assets/regular/shield-check.svg?raw';
+import database from '@phosphor-icons/core/assets/regular/database.svg?raw';
+import delivery from '@phosphor-icons/core/assets/regular/package.svg?raw';
+import filter from '@phosphor-icons/core/assets/regular/sliders-horizontal.svg?raw';
+import reset from '@phosphor-icons/core/assets/regular/arrow-counter-clockwise.svg?raw';
+import grid from '@phosphor-icons/core/assets/regular/squares-four.svg?raw';
+const icons = { filter,reset,grid,planning,shield,database,delivery,bookmark,clock,chat,tasks,bell,key,settings,home, knowledge, film, video, training, presentation, capture, inspection, arrow, open };
 interface Props { name: keyof typeof icons; class?: string; }
 const { name, class: className } = Astro.props;
 ---

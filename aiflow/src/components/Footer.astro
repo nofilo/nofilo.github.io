@@ -1,5 +1,0 @@
----
-import Container from './Container.astro';
-import { helpLinks } from '../data/navigation';
----
-<footer class="site-footer"><Container class="footer-inner"><a href="/aiflow/" class="wordmark"><span>广告执行部</span><span>AI 提效平台</span></a><nav aria-label="页脚导航">{helpLinks.map(item => <a href={item.href}>{item.label}</a>)}</nav></Container></footer>

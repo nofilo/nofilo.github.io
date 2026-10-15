@@ -1,1 +1,0 @@
-Platform Sans is a renamed, homepage-specific WOFF2 subset of Adobe Source Han Sans CN Variable, licensed under SIL OFL 1.1. Original: https://github.com/adobe-fonts/source-han-sans . The original glyph designs are unchanged. Regenerate the subset when page text is expanded; unsupported characters use the system fallback.
